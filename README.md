@@ -1,2 +1,2 @@
 # Lotus
-Front End python Crazy 
+Run the application on main.py
