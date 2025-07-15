@@ -1,11 +1,9 @@
 import tkinter as tk
 
-import tkinter as tk
-
 class LoginPanel():
     def __init__(self):
         self.root = tk.Tk()
-        self.root.update_idletasks()  # Get updated window info
+        self.root.update_idletasks()  
 
         width = 1200
         height = 600
@@ -41,7 +39,7 @@ class LoginPanel():
         self.LoginFrame.grid_propagate(False)
 
         self.LogoFrame = tk.Frame(self.LoginFrame, bg="white")
-        self.LogoFrame.grid(row=0, column=0, sticky="ew")
+        self.LogoFrame.grid(row=0, column=0, sticky="nsew")
 
         self.CompanyLogo = tk.PhotoImage(file="images/CompanyLogo.png")
         self.CompanyLogoLabel = tk.Label(self.LogoFrame, image=self.CompanyLogo, bg="white")
@@ -117,7 +115,10 @@ class LoginPanel():
         self.root.mainloop()
     
     def on_click(self):
-        print("Button clicked!")
+        Username = self.TextBox1.get()
+        Password = self.TextBox2.get()
+
+        print(f"Username: {Username}, Password: {Password}")
 
 # Run on main.py
 
