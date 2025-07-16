@@ -1,11 +1,9 @@
 import tkinter as tk
 
-import tkinter as tk
-
 class LoginPanel():
     def __init__(self):
         self.root = tk.Tk()
-        self.root.update_idletasks()  # Get updated window info
+        self.root.update_idletasks()  
 
         width = 1200
         height = 600
@@ -41,24 +39,24 @@ class LoginPanel():
         self.LoginFrame.grid_propagate(False)
 
         self.LogoFrame = tk.Frame(self.LoginFrame, bg="white")
-        self.LogoFrame.grid(row=0, column=0, sticky="ew")
+        self.LogoFrame.grid(row=0, column=0, sticky="nsew")
 
-        self.CompanyLogo = tk.PhotoImage(file="images/CompanyLogo.png")
+        self.CompanyLogo = tk.PhotoImage(file="Lotus/Images/CompanyLogo.png")
         self.CompanyLogoLabel = tk.Label(self.LogoFrame, image=self.CompanyLogo, bg="white")
         self.CompanyLogoLabel.pack(pady=30)
 
         self.GridFrame = tk.Frame(self.LoginFrame, bg="white")
         self.GridFrame.grid(row=1, column=0, sticky="nsew")
 
-        self.UserLogo = tk.PhotoImage(file="images/UserLogo.png")
+        self.UserLogo = tk.PhotoImage(file="Lotus/Images/UserLogo.png")
         self.UserLogoLabel = tk.Label(self.GridFrame, image=self.UserLogo, bg="white")
         self.UserLogoLabel.grid(row=0, column=0,padx=35,pady=20)
 
-        self.LockLogo = tk.PhotoImage(file="images/LockLogo.png")
+        self.LockLogo = tk.PhotoImage(file="Lotus/Images/LockLogo.png")
         self.LockLogoLabel = tk.Label(self.GridFrame, image=self.LockLogo, bg="white")
         self.LockLogoLabel.grid(row=1, column=0,padx=35,pady=20)
 
-        self.TextBoxFrame1 = tk.PhotoImage(file="images/TextBox.png")
+        self.TextBoxFrame1 = tk.PhotoImage(file="Lotus/Images/TextBox.png")
         self.TextBoxBg1 = tk.Label(self.GridFrame, image=self.TextBoxFrame1, bg="white")
         self.TextBoxBg1.grid(row=0, column=1, padx=10, pady=20)
 
@@ -75,7 +73,7 @@ class LoginPanel():
         self.TextBox1.place(in_=self.TextBoxBg1, relx=0.5, rely=0.5, anchor="center", width=300, height=30)
         self.TextBox1.insert(0, "Username")
 
-        self.TextBoxFrame2 = tk.PhotoImage(file="images/TextBox.png")
+        self.TextBoxFrame2 = tk.PhotoImage(file="Lotus/images/TextBox.png")
         self.TextBoxFrame2Label = tk.Label(self.GridFrame, image=self.TextBoxFrame1, bg="white")
         self.TextBoxFrame2Label.grid(row=1, column=1)
 
@@ -96,7 +94,7 @@ class LoginPanel():
         self.BottomFrame = tk.Frame(self.LoginFrame, bg="white")
         self.BottomFrame.grid(row=2, column=0, sticky="nsew")
 
-        self.ButtonImage = tk.PhotoImage(file="images/ButtonBar.png")
+        self.ButtonImage = tk.PhotoImage(file="Lotus/images/ButtonBar.png")
         self.ButtonImageLabel = tk.Button(self.BottomFrame,
         image=self.ButtonImage,
         bg="white",
@@ -114,10 +112,25 @@ class LoginPanel():
         cursor="hand2")
         self.ButtonImageLabel.pack(side="top")
 
+        self.TextBox1.bind("<FocusIn>", lambda event: self.TextBox1.delete(0, "end") if self.TextBox1.get() == "Username" else None)
+        self.TextBox1.bind("<FocusOut>", lambda event: self.TextBox1.insert(0, "Username") if self.TextBox1.get() == "" else None)
+        self.TextBox2.bind("<FocusIn>", lambda event: self.TextBox2.delete(0, "end") if self.TextBox2.get() == "Password" else None)
+        self.TextBox2.bind("<FocusOut>", lambda event: self.TextBox2.insert(0, "Password") if self.TextBox2.get() == "" else None)     
+
         self.root.mainloop()
     
     def on_click(self):
-        print("Button clicked!")
+        username = self.TextBox1.get()
+        password = self.TextBox2.get()
+        
+        if username == "Username" or password == "Password":
+            print("Please enter valid credentials.")
+        else:
+            print(f"Username: {username}, Password: {password}")
+            # Here you can add the logic to handle the login process, such as checking credentials against a database.
+
+
+        
 
 # Run on main.py
 
